@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>02-B</title>
+    <style>
+        a {
+            border: inset;
+            border-width: 2px;
+            background-color: lightgoldenrodyellow;
+            font-size: 18px;
+            line-height:1em;
+            margin-left:1em;
+            display:inline-block;
+            margin-top:0.2em;
+            color:darkcyan;
+            border-color:lightcoral;
+            padding:0.2em 0.5em;
+            text-decoration:none;
+            cursor:pointer;
+        }
+        input {
+            width: 80%;
+            font-size: 14px;
+            height:1.5em;
+        }
+        div.blk {
+            width: 100%;
+            border-style: solid;
+            border-color: darkseagreen;
+            border-width: 1px 0 1px 0;
+            margin-top:0.5em;
+            padding: 3px;
+        }
+        span {
+            font-size: 14px;
+            line-height: 1.5em;
+        }
+    </style>
+    <script>
+        function copy(idx) {
+            const item = document.getElementById(idx);
+            item.select();
+            document.execCommand("copy");
+        }
+        const dataList = [
+            { idx: 102, tel: '18301514319', act: '251010224374' },
+            { idx: 103, tel: '13521109759', act: '251010265556' },
+            { idx: 104, tel: '13121912883', act: '251010330956' },
+            { idx: 105, tel: '15711190654', act: '251010331493' },
+            { idx: 106, tel: '13501159913', act: '251010332531' },
+            { idx: 107, tel: '13811100433', act: '251010333573' },
+            { idx: 108, tel: '18810508663', act: '251010336044' },
+            { idx: 109, tel: '13683188062', act: '251010337369' },
+            { idx: 110, tel: '15701660698', act: '251010338298' },
+            { idx: 111, tel: '13488858506', act: '251010338588' },
+            { idx: 112, tel: '13901152296', act: '251010338797' },
+            { idx: 113, tel: '15010105942', act: '251010339955' },
+            { idx: 114, tel: '15011385026', act: '251010342098' },
+            { idx: 115, tel: '13910083820', act: '251010342764' },
+            { idx: 116, tel: '13717774666', act: '251010344015' },
+            { idx: 117, tel: '13691085027', act: '251010344421' },
+            { idx: 118, tel: '18201199166', act: '251010344758' },
+            { idx: 119, tel: '18310053143', act: '251010344982' },
+            { idx: 120, tel: '18811797950', act: '251010347324' },
+            { idx: 121, tel: '13701001600', act: '251010347359' },
+            { idx: 122, tel: '18310080309', act: '251010347498' },
+            { idx: 123, tel: '18301692927', act: '251010347509' },
+            { idx: 124, tel: '13718622060', act: '251010347884' },
+            { idx: 125, tel: '15910239273', act: '251010348442' },
+            { idx: 126, tel: '13439686925', act: '251010348582' },
+            { idx: 127, tel: '13716039005', act: '251010348768' },
+            { idx: 128, tel: '58280302', act: '251010348829' },
+            { idx: 129, tel: '13521333932', act: '251010353039' },
+            { idx: 130, tel: '18801057098', act: '251010353432' },
+            { idx: 131, tel: '18810210323', act: '251010358258' },
+            { idx: 132, tel: '18910319512', act: '251010362324' },
+            { idx: 133, tel: '13521161954', act: '251010364328' },
+            { idx: 134, tel: '13811820824', act: '251010365915' },
+            { idx: 135, tel: '13811723797', act: '251010366025' },
+        ]
+        window.addEventListener("load", () => {
+            for (const data of dataList) {
+                const blk = document.createElement("div");
+                blk.className = "blk";
+                document.body.appendChild(blk);
+                const row1 = document.createElement("div");
+                const row2 = document.createElement("div");
+                const row3 = document.createElement("div");
+                const row4 = document.createElement("div");
+                blk.appendChild(row1);
+                blk.appendChild(row2);
+                blk.appendChild(row3);
+                blk.appendChild(row4);
+                row1.innerText = "序号:" + data.idx;
+                const lbl2 = document.createElement("span");
+                const lbl3 = document.createElement("span");
+                lbl2.innerText = "电话:";
+                lbl3.innerText = "账号:";
+                row2.appendChild(lbl2);
+                row3.appendChild(lbl3);
+                const ipt2 = document.createElement("input");
+                const ipt3 = document.createElement("input");
+                row2.appendChild(ipt2);
+                row3.appendChild(ipt3);
+                ipt2.type = "text";
+                ipt3.type = "text";
+                ipt2.readOnly = true;
+                ipt3.readOnly = true;
+                ipt2.value = data.tel;
+                ipt3.value = data.act;
+                ipt2.id = "T-" + data.idx;
+                ipt3.id = "A-" + data.idx;
+                const btn1 = document.createElement("a");
+                const btn2 = document.createElement("a");
+                const btn3 = document.createElement("a");
+                row4.appendChild(btn1);
+                row4.appendChild(btn2);
+                row4.appendChild(btn3);
+                btn1.innerText = "拨打电话";
+                btn2.innerText = "复制电话";
+                btn3.innerText = "复制账号";
+                btn1.href = "tel:{{" + data.tel + "}}";
+                btn2.href = "javascript:copy('T-" + data.idx + "');";
+                btn3.href = "javascript:copy('A-" + data.idx + "');";
+            }
+        });
+    </script>
+</head>
+<body style="margin:0;">
+    <div style="background-color:white;position:fixed;height:2.5em;width:100%;top:0;padding:0;border-bottom:1px solid black;"><a href="./index.html">返回</a></div>
+</body>
+</html>
